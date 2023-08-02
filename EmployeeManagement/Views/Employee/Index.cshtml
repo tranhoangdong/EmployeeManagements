@@ -1,0 +1,51 @@
+﻿@using EmployeeManagement.Models;
+@model IEnumerable<Employee>
+
+@{
+    var data = Model;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>%
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.LabelFor(x => x.First().Id)</th>
+        <th>@Html.LabelFor(x => x.First().FirstName)</th>
+        <th>@Html.LabelFor(x => x.First().LastName)</th>
+        <th>@Html.LabelFor(x => x.First().Address)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayName(item.Id.ToString())
+            </th>
+            <th>
+                @Html.DisplayName(item.FirstName)
+
+            </th>
+            <th>
+                @Html.DisplayName(item.LastName)
+            <th>
+                @Html.DisplayName(item.Address)
+
+            </th>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+
+
+
+
+
+</table>
