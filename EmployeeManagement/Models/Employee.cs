@@ -67,5 +67,19 @@ namespace EmployeeManagement.Models
             return EmpList;
 
         }
+       
+
+        public void AddEmp(string firstname, string lastname, string address)
+        {
+            string sql = "INSERT INTO Employee(FirstName,LastName,Address) VALUES(N'" + firstname +
+                "','" + lastname + "',N'" + address + "')";
+            SqlConnection con = db.GetConnection();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+
+        }
     }
-}
+    }

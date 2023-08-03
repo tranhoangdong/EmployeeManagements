@@ -18,5 +18,19 @@ namespace EmployeeManagement.Controllers
             List<Employee> obj = EmpList.GetEmployee(String.Empty).OrderBy(x => x.Id).ToList();
             return View(obj);
         }
+        [HttpPost]
+        public int SaveData(string firstname, string lastname, string address)
+        {
+            EmployeeList EmpList = new EmployeeList();
+            EmpList.AddEmp(firstname, lastname, address);
+            int c = 0;
+            return 0;
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
+
+    
 }
