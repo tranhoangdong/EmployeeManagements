@@ -14,22 +14,22 @@ namespace EmployeeManagement.Controllers
         public ActionResult Index()
 
         {
-            EmployeeList EmpList = new EmployeeList();
-            List<Employee> obj = EmpList.GetEmployee(String.Empty).OrderBy(x => x.Id).ToList();
-            return View(obj);
+            CompanyDBContext db = new CompanyDBContext();
+            List<Employee> Employees = db.Employees.ToList();
+            return View(Employees);
         }
-        [HttpPost]
-        public int SaveData(string firstname, string lastname, string address)
-        {
-            EmployeeList EmpList = new EmployeeList();
-            EmpList.AddEmp(firstname, lastname, address);
-            int c = 0;
-            return 0;
-        }
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public int SaveData(string firstname, string lastname, string address)
+        //{
+        //    EmployeeList EmpList = new EmployeeList();
+        //    EmpList.AddEmp(firstname, lastname, address);
+        //    int c = 0;
+        //    return 0;
+        //}
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
     }
 
     
