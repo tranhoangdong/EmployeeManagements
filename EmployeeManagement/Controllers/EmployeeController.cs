@@ -1,36 +1,35 @@
-﻿using EmployeeManagement.Models;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using EmployeeManagement.Models;
 namespace EmployeeManagement.Controllers
 {
     public class EmployeeController : Controller
     {
         // GET: Employee
         public ActionResult Index()
-
         {
-            CompanyDBContext db = new CompanyDBContext();
+            EmployeeManagementEntities1 db = new EmployeeManagementEntities1();
             List<Employee> Employees = db.Employees.ToList();
             return View(Employees);
         }
-        //[HttpPost]
-        //public int SaveData(string firstname, string lastname, string address)
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Employee c)
+        {
+            EmployeeManagementEntities1 db = new EmployeeManagementEntities1();
+            db.Employees.Add(c);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        //public ActionResult Edit(int Id)
         //{
-        //    EmployeeList EmpList = new EmployeeList();
-        //    EmpList.AddEmp(firstname, lastname, address);
-        //    int c = 0;
-        //    return 0;
-        //}
-        //public ActionResult Create()
-        //{
-        //    return View();
+
         //}
     }
-
-    
 }

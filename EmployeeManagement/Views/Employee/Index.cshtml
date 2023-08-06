@@ -1,51 +1,28 @@
-﻿@using EmployeeManagement.Models;
-@model IEnumerable<Employee>
-
-@{
-    var data = Model;
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index</h2>
-
-<p>%
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>@Html.LabelFor(x => x.First().Id)</th>
-        <th>@Html.LabelFor(x => x.First().FirstName)</th>
-        <th>@Html.LabelFor(x => x.First().LastName)</th>
-        <th>@Html.LabelFor(x => x.First().Address)</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <th>
-                @Html.DisplayName(item.Id.ToString())
-            </th>
-            <th>
-                @Html.DisplayName(item.FirstName)
-
-            </th>
-            <th>
-                @Html.DisplayName(item.LastName)
-            <th>
-                @Html.DisplayName(item.Address)
-
-            </th>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+﻿@model List<EmployeeManagement.Models.Employee>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-
-
-
-
-
-</table>
+    <h2>Index</h2>
+    <a href="/Employee/Create">Create new Employee</a>
+    <table class="Table">
+        <tr>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Address</th>
+            <th>BirthPlace</th>
+        </tr>
+        @foreach ( var item in Model)
+            {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.FirstName</td>
+        <td>@item.LastName</td>
+        <td>@item.Address</td>
+        <td>@item.BirthPlace</td>
+        @*<a href="/Employee/Edit/@item.Id"></a>*@
+    </tr>
+            }
+    </table>
