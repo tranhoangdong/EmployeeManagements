@@ -1,28 +1,58 @@
 ﻿@model List<EmployeeManagement.Models.Employee>
-    @{
-        ViewBag.Title = "Index";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-    <h2>Index</h2>
-    <a href="/Employee/Create">Create new Employee</a>
-    <table class="Table">
-        <tr>
-            <th>ID</th>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>Address</th>
-            <th>BirthPlace</th>
-        </tr>
-        @foreach ( var item in Model)
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Index</h2>
+        <a href="/Employee/Create">Create new Employee </a>
+        <br />
+
+        <form class="d-flex flex-row align-items-center flex-wrap"
+              action="/Employee/Index">
+            <label for="Search" class="mx-2 my-1"> Search </label>
+            <input type="Search"
+                   class="form-control w-auto"
+                   id="Search"
+                   name="Search"
+                   value="@ViewBag.Search"
+                   placeholder="Search" />
+            <button type="submit" class="btn btn-primary mx-2">GO</button>
+        </form>
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Address</th>
+                <th>BirthPlace</th>
+            </tr>
+            @foreach (var item in Model)
             {
-    <tr>
-        <td>@item.Id</td>
-        <td>@item.FirstName</td>
-        <td>@item.LastName</td>
-        <td>@item.Address</td>
-        <td>@item.BirthPlace</td>
-        @*<a href="/Employee/Edit/@item.Id"></a>*@
-    </tr>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.FirstName</td>
+                    <td><a href="/employee/detail/@item.Id">@item.LastName</a></td>
+                    <td>@item.Address</td>
+                    <td>@item.BirthPlace</td>
+                   <td>
+                       <a href="/Employee/Edit/@item.Id">Edit</a>
+                       <a href="/Employee/Delete/@item.Id">Delete</a>
+                    </td> 
+                </tr>
             }
-    </table>
+        </table>
+    </div>
+</body>
+</html>

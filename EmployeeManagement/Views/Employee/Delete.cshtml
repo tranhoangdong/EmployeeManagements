@@ -1,0 +1,29 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<form action="/employee/delete/@Model.Id" method="post">
+    <input type="hidden"
+           name="Id"
+           value="@Model.Id" />
+    <table class="table">
+       
+        <tr>
+            <th>FirstName</th>
+            <td>@Model.FirstName</td>
+        </tr>
+        <tr>
+            <th>LastName</th>
+            <td>@Model.LastName</td>
+        </tr>
+       
+
+    </table>
+    <button type="submit" class="btn btn-danger ">Delete</button>
+    <a href="/employee" class="btn btn-danger">Cancel</a>
+</form>

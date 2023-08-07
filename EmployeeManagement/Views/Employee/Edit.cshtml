@@ -1,0 +1,54 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form action="/Employee/Edit/@Model.Id" method="Post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="row">
+        <div class="col-md-6">
+            <label for="FirstName">FirstName</label>
+            <input type="text"
+                   class="form-control"
+                   id="FirstName"
+                   name="FirstName"
+                   placeholder="FirstName" 
+                   value="@Model.FirstName"/>
+        </div>
+        <div class="col-md-6">
+            <label for="LastName">LastName</label>
+            <input type="text"
+                   class="form-control"
+                   id="LastName"
+                   name="LastName"
+                   placeholder="LastName" 
+                   value="@Model.LastName"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="Address">Address</label>
+            <input type="text"
+                   class="form-control"
+                   id="Address"
+                   name="Address"
+                   placeholder="Address" 
+                   value="@Model.Address"/>
+        </div>
+        <div class="col-md-6">
+            <label for="BirthPlace">BirthPlace</label>
+            <input type="text"
+                   class="form-control"
+                   id="BirthPlace"
+                   name="BirthPlace"
+                   placeholder="BirthPlace"
+                   value="@Model.BirthPlace"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="/Employee" class="btn btn-danger">Cancel</a>
+</form>
