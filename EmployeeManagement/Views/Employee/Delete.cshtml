@@ -11,8 +11,21 @@
     <input type="hidden"
            name="Id"
            value="@Model.Id" />
-    <table class="table">
-       
+   
+   
+    <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thong bao</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+        <p>ban co muon xoa ?</p>
         <tr>
             <th>FirstName</th>
             <td>@Model.FirstName</td>
@@ -21,9 +34,20 @@
             <th>LastName</th>
             <td>@Model.LastName</td>
         </tr>
-       
+
 
     </table>
-    <button type="submit" class="btn btn-danger ">Delete</button>
-    <a href="/employee" class="btn btn-danger">Cancel</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger ">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+ 
+
+
+
 </form>

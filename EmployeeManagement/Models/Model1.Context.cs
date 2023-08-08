@@ -13,10 +13,10 @@ namespace EmployeeManagement.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmployeeManagementEntities1 : DbContext
+    public partial class EmployeeManagementEntities2 : DbContext
     {
-        public EmployeeManagementEntities1()
-            : base("name=EmployeeManagementEntities1")
+        public EmployeeManagementEntities2()
+            : base("name=EmployeeManagementEntities2")
         {
         }
     

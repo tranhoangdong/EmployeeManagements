@@ -46,13 +46,15 @@
                     <td><a href="/employee/detail/@item.Id">@item.LastName</a></td>
                     <td>@item.Address</td>
                     <td>@item.BirthPlace</td>
-                   <td>
-                       <a href="/Employee/Edit/@item.Id">Edit</a>
-                       <a href="/Employee/Delete/@item.Id">Delete</a>
+                    <td>
+                        <a href="/Employee/Edit/@item.Id" class="btn btn-info ">Edit</a>
+                        <a href="/Employee/Delete/@item.Id" class="btn btn-danger">Delete</a>
+                        
                     </td> 
                 </tr>
             }
         </table>
+
     </div>
 </body>
 </html>
