@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EmployeeManagement.Models;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,5 +28,25 @@ namespace EmployeeManagement.Controllers
 
             return View();
         }
+        public ActionResult register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public int SaveData1(string TaiKhoan, string MatKhau)
+        {
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            User u = new User
+            {
+
+                TaiKhoan = TaiKhoan,
+                MatKhau = MatKhau
+            };
+            db.Users.Add(u);
+            db.SaveChanges();
+            int c = 0;
+            return 0;
+        }
+
     }
 }

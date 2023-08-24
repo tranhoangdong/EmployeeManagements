@@ -1,4 +1,4 @@
-﻿@model EmployeeManagement.Models.Employee
+﻿@model EmployeeManagement.Models.a.Employee
 
 @{
     ViewBag.Title = "Delete";
@@ -7,13 +7,12 @@
 
 <h2>Delete</h2>
 
-<form action="/employee/delete/@Model.Id" method="post">
     <input type="hidden"
            name="Id"
-           value="@Model.Id" />
+         id="idItem"  value="@Model.Id" />
    
-   
-    <button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" id="btnDelete">Delete</button>
+    @*<button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>*@
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -39,15 +38,45 @@
     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger ">Delete</button>
+                    <button type="button" class="btn btn-danger"onclick="Delete()" >Delete</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
 
         </div>
     </div>
- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $('#btnDelete').on('click', function () {
+
+            if (window.confirm('Bạn có muốn xóa không ?')) {
+                Delete();
+            }
+            else {
+            }
+    });
+
+    function Delete() {
+        var id = $('#idItem').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Employee/DeleteItem',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ id: id }),
+            dataType: 'json',
+            success: function (response) {
+                alert("Lưu thành công");
+
+            },
+            error: function (response) {
+                console.log(787787787)
+            }
+        });
+    }
+   
+</script>
 
 
 
-</form>
+

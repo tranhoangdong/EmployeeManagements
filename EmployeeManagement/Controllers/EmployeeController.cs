@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EmployeeManagement.Models;
+
 namespace EmployeeManagement.Controllers
 {
     public class EmployeeController : Controller
@@ -11,9 +13,9 @@ namespace EmployeeManagement.Controllers
        
         public ActionResult Index(string search = "")
         {
-            EmployeeManagementEntities2 db = new EmployeeManagementEntities2();
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
             // list<employee> employees = db.employees.tolist();
-            List<Employee> employees = db.Employees.Where(row => row.LastName.Contains(search)).ToList();
+            List<a.Employee> employees = db.Employees.Where(row => row.LastName.Contains(search)).ToList();
             ViewBag.search = search;
             return View(employees);
         }
@@ -22,32 +24,32 @@ namespace EmployeeManagement.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Employee c)
+        public ActionResult Create(a.Employee c)
         {
-            EmployeeManagementEntities2 db = new EmployeeManagementEntities2();
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
             db.Employees.Add(c);
             db.SaveChanges();
             return RedirectToAction("index");
         }
         public ActionResult detail(int id)
         {
-            EmployeeManagementEntities2 db = new EmployeeManagementEntities2();
-            Employee emp = db.Employees.Where(row => row.Id == id).FirstOrDefault();
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            a.Employee emp = db.Employees.Where(row => row.Id == id).FirstOrDefault();
             return View(emp);
 
         }
         public ActionResult Edit(int id)
         {
-            EmployeeManagementEntities2 db = new EmployeeManagementEntities2();
-            Employee employee = db.Employees.Where(row => row.Id == id).FirstOrDefault();
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            a.Employee employee = db.Employees.Where(row => row.Id == id).FirstOrDefault();
             return View(employee);
 
         }
         [HttpPost]
-        public ActionResult Edit(Employee emp)
+        public ActionResult Edit(a.Employee emp)
         {
-            EmployeeManagementEntities2 db = new EmployeeManagementEntities2();
-            Employee employee = db.Employees.Where(row => row.Id == emp.Id).FirstOrDefault();
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            a.Employee employee = db.Employees.Where(row => row.Id == emp.Id).FirstOrDefault();
 
             //update
             employee.FirstName = emp.FirstName;
@@ -60,21 +62,42 @@ namespace EmployeeManagement.Controllers
         }
         public ActionResult Delete(int id)
         {
-            EmployeeManagementEntities2 db = new EmployeeManagementEntities2();
-            Employee employee = db.Employees.Where(row => row.Id == id).FirstOrDefault();
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            a.Employee employee = db.Employees.Where(row => row.Id == id).FirstOrDefault();
             return View(employee);
 
         }
         [HttpPost]
-        public ActionResult Delete(int id, Employee p)
+        public ActionResult DeleteItem(int id)
         {
-            EmployeeManagementEntities2 db = new EmployeeManagementEntities2();
-            Employee employee = db.Employees.Where(row => row.Id == id).FirstOrDefault();
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            a.Employee employee = db.Employees.Where(row => row.Id == id).FirstOrDefault();
             db.Employees.Remove(employee);
             db.SaveChanges();
-            return RedirectToAction("Index ");
+            return RedirectToAction("Index");
 
         }
       
+        public ActionResult Index1()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public int SaveData(string FirstName, string LastName, string Address, string BirthPlace)
+        {
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            a.Employee employee = new a.Employee
+            {
+                Address = Address,
+                BirthPlace = BirthPlace,
+                FirstName = FirstName,
+                LastName = LastName
+            };
+            db.Employees.Add(employee);
+            db.SaveChanges();
+            int c = 0;
+            return 0;
+        }
     }
 }

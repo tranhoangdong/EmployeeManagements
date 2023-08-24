@@ -12,11 +12,12 @@ namespace EmployeeManagement.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class EmployeeManagementEntities2 : DbContext
+    using System.Data.SqlClient;
+
+    public partial class EmployeeManagementEntities3 : DbContext
     {
-        public EmployeeManagementEntities2()
-            : base("name=EmployeeManagementEntities2")
+        public EmployeeManagementEntities3()
+            : base("name=EmployeeManagementEntities3")
         {
         }
     
@@ -25,6 +26,12 @@ namespace EmployeeManagement.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<a.Employee> Employees { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
+        internal SqlConnection GetConnection()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

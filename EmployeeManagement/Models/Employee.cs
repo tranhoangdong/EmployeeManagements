@@ -11,6 +11,11 @@ namespace EmployeeManagement.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.SqlClient;
+
+    public class a
+    {
+
     
     public partial class Employee
     {
@@ -19,5 +24,19 @@ namespace EmployeeManagement.Models
         public string LastName { get; set; }
         public string Address { get; set; }
         public string BirthPlace { get; set; }
+    }
+        public void AddData(string FirstName, string LastName, string Address, string BirthPlace)
+        {
+            EmployeeManagementEntities3 db = new EmployeeManagementEntities3();
+            string sql = "INSERT INTO Account(FirstName,LastName,Address,BirthPlace) VALUES(N'" + FirstName +
+                "','" + LastName + "',N'" + Address + "',N'" + BirthPlace + "')";
+            SqlConnection con = db.GetConnection();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+
+        }
     }
 }
